@@ -22,9 +22,10 @@ public class FlinkConsumerThread implements Runnable{
     public void run() {
         try {
             Properties pros = new Properties();
-            pros.setProperty("broker-list", "localhost:9092");
-            pros.setProperty("zookeeper.connect","localhost:2181");
-            FlinkKafkaConsumer010<String> consumer010 = new FlinkKafkaConsumer010<String>("zy-test-topic", new SimpleStringSchema(), pros);
+            pros.setProperty("bootstrap.servers", "3.2.12.191:30091");
+            pros.setProperty("zookeeper.connect","3.2.12.191:30094");
+            pros.setProperty("group.id","test-consumer-group1");
+            FlinkKafkaConsumer010<String> consumer010 = new FlinkKafkaConsumer010<String>("tcp-session-topic", new SimpleStringSchema(), pros);
             consumer010.setStartFromLatest();
             DataStream<String> res = environment.addSource(consumer010);
             System.out.printf("Current Time: " + new Date(), res.print());

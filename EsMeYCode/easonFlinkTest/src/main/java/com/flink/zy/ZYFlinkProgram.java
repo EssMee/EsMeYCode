@@ -1,8 +1,11 @@
 package com.flink.zy;
 
+import com.flink.zy.util.Item;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.configuration.Configuration;
+import org.apache.flink.streaming.api.CheckpointingMode;
+import org.apache.flink.streaming.api.TimeCharacteristic;
 import org.apache.flink.streaming.api.collector.selector.OutputSelector;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.SplitStream;
@@ -12,6 +15,7 @@ import org.apache.flink.streaming.api.functions.windowing.ProcessWindowFunction;
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumerBase;
 import org.apache.flink.util.Collector;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import scala.Tuple3;
@@ -25,18 +29,15 @@ import java.util.Properties;
 public class ZYFlinkProgram {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(new Configuration());
+        env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
         env.setParallelism(2);
+        env.enableCheckpointing(10 * 60 *1000L, CheckpointingMode.EXACTLY_ONCE, false);
         Properties properties = new Properties();
         properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"192.168.33.130:9092");
         properties.setProperty("group.id","zy1");
         FlinkKafkaConsumer<String> flinkKafkaConsumer = new FlinkKafkaConsumer<String>("test1", new SimpleStringSchema(), properties);
         flinkKafkaConsumer.setStartFromEarliest();
         flinkKafkaConsumer.assignTimestampsAndWatermarks(WatermarkStrategy.forBoundedOutOfOrderness(Duration.ofSeconds(2)));
-
-
-
-
-
         DataStream<String>  originalStream = env.addSource(flinkKafkaConsumer);
         // 这一步其实是多此一举，防止以后同样的主题里会消费到其他类型的消息也没准儿。
         SplitStream<String> splitedStream = originalStream.split((OutputSelector<String>) value -> {
@@ -53,7 +54,14 @@ public class ZYFlinkProgram {
         });
         itemStream.keyBy(s -> s.getName())
                 .timeWindow(Time.minutes(1))
-                .process(new KeyedProcessFunction<>()).setParallelism(4).print();
+                .process(new KeyedProcessFunction<String, Item, Tuple3<String, Integer, Timestamp>>() {
+
+                    @Override
+                    public void processElement(Item value, Context ctx, Collector<Tuple3<String, Integer, Timestamp>> out) throws Exception {
+                        String currentItem = ctx.getCurrentKey();
+
+                    }
+                }).setParallelism(4).print();
         itemStream.print("item Stream");
         env.execute();
     }

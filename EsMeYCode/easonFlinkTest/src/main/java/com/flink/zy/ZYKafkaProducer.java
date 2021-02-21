@@ -23,7 +23,7 @@ import java.util.Random;
  * @time 2020-02-15
  */
 
-public class ZyKafkaProducer {
+public class ZYKafkaProducer {
     public static void main(String[] args) {
         Properties properties = new Properties();
         properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());

@@ -53,15 +53,15 @@ public class ZYFlinkProgram {
             return item;
         });
         itemStream.keyBy(s -> s.getName())
-                .timeWindow(Time.minutes(1))
-                .process(new KeyedProcessFunction<String, Item, Tuple3<String, Integer, Timestamp>>() {
-
-                    @Override
-                    public void processElement(Item value, Context ctx, Collector<Tuple3<String, Integer, Timestamp>> out) throws Exception {
-                        String currentItem = ctx.getCurrentKey();
-
-                    }
-                }).setParallelism(4).print();
+                .timeWindow(Time.minutes(1));
+//                .process(new KeyedProcessFunction<String, Item, Tuple3<String, Integer, Timestamp>>() {
+//
+//                    @Override
+//                    public void processElement(Item value, Context ctx, Collector<Tuple3<String, Integer, Timestamp>> out) throws Exception {
+//                        String currentItem = ctx.getCurrentKey();
+//
+//                    }
+//                }).setParallelism(4).print();
         itemStream.print("item Stream");
         env.execute();
     }

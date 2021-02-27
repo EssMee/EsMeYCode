@@ -1,9 +1,5 @@
 package com.LeetCode;
 
-import org.apache.kafka.common.metrics.Stat;
-import scala.Char;
-import scala.runtime.Tuple3Zipped$;
-
 import java.util.*;
 
  /*Time O(n) 字符串的长度 Space O(N + 括号种类)*/

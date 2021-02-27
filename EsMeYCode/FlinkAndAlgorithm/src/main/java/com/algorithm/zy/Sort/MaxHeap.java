@@ -1,5 +1,5 @@
 package com.algorithm.zy.Sort;
-
+import com.flink.zy.util.Item;
 public class MaxHeap<Item extends Comparable>  {
     private int count;
     private Item[] data;
@@ -27,6 +27,31 @@ public class MaxHeap<Item extends Comparable>  {
         }
     }
 
+    public Item extractMax() {
+        assert this.count > 0;
+        Item ret = data[1];
+        swap(data,1, count);
+        this.count --;
+        shiftDown(1);
+        return data[1];
+    }
+
+    private void shiftDown(int k) {
+        /*判断一下这个节点起码有左孩子*/
+        while (2*k <= count) {
+            /*这一轮，k位置的元素与j位置的元素作比较*/
+            int j = 2*k;
+            if (j+1 <= count && data[j].compareTo(data[j+1]) < 0) {
+                j += 1;
+            }
+            if (data[k].compareTo(data[j]) >= 0) {
+                break;
+            }
+            swap(data,k,j);
+            k = j;
+        }
+    }
+
     private void swap(Item[] arr, int i, int j) {
         Item t = arr[i];
         arr[i] = arr[j];
@@ -41,5 +66,14 @@ public class MaxHeap<Item extends Comparable>  {
             maxHeap.insert((int) Math.random() * M);
         }
         System.out.println(maxHeap.size());
+        Integer[] arr = new Integer[N];
+        for (int i = 0; i < N; i++) {
+            arr[i] = maxHeap.extractMax();
+            System.out.println(arr[i] + " ");
+        }
+        System.out.println();
+        for (int i = 1; i < N; i++) {
+            assert arr[i] <= arr[i-1];
+        }
     }
 }

@@ -22,6 +22,9 @@ public class QuickSort {
 
     /*找到一个索引j,使得[l+1,j] < v,[j+1,i-1] > v*/
     private int __partition(int[] arr, int l, int r) {
+        /*        优化的方法，用一个随机的索引作为标定点，与最左侧的元素交换，避免完全有序的情况下，
+        每一次分割的时候有一侧子树为空的情况。*/
+        swap(arr, l, (int)(Math.random() * (r-l+1)) + l);
         int v = arr[l];
         int j = l;
         for (int i = j+1; i <=r ; i++) {

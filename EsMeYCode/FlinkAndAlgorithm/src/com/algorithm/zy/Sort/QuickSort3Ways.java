@@ -1,4 +1,4 @@
-package PlayWithAlgo;
+package com.algorithm.zy.Sort;
 
 public class QuickSort3Ways {
     public static void main(String[] args) {

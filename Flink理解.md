@@ -157,11 +157,11 @@ pv task制作快照为(a, 5000),(b,6000)。代表第100次快照发生时，sour
 从（0，10010），pv task是（a，5500），（b，7000）是做不到的，因为这个状态没有保存进快照里。
 
 #### barrier
-![barrier](D:\LearningMaterials\个人的FLink理解\barrier.png)
+[! barrier](D:\LearningMaterials\个人的FLink理解\barrier.png)
 所有的任务，只要在碰到了barrier，就要进行快照制作。 barrier n处做的快照就是从job开始处理到barrier n的所有状态数据。
 
 #### barrier对齐
-![barrier对齐](D:\LearningMaterials\个人的FLink理解\barrier对齐.png)
+[！barrier对齐](D:\LearningMaterials\个人的FLink理解\barrier对齐.png)
 （1）就是说数字流的barrier n先到了这个算子，但是这个算子知道上游应该送来两个barrier n。 
 （2）此时数字流再进来的数据就会放进算子的input buffer中，不计算也不发送；（因为这部分数据被认为是下一次checkpoint的时候应该保存的状态）
 （3）同时字母流的barrier n晚到，在到达之前，字母流的数据会被继续计算和发送。

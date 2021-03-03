@@ -21,6 +21,21 @@ Hive是一个数据仓库基础工具，建立在Hadoop之上（MapReduce+HDFS�
 
 [!HIVE执行流程](https://www.yiibai.com/uploads/allimg/141228/1-14122R10220b9.jpg)
 
+#### HIVE数据类型
+
+基本数据类型(tinyint[1 byte], smallInt[2 byte], int[4 byte], big int[8 byte], boolean, float[4 byte], double[8 byte], char, varchar, date, timestamp)和复杂数据类型(array,map,struct).
+example:
+
+```sql
+create table employee (
+name String,
+salary float,
+subordinates array<String>,
+deductions map<String,,float>,
+address struct<street:String, city:String, state:String,zip:int>)
+partitioned by (city:String,state:String)
+```
+
 #### 创建数据库
 
 ```sql

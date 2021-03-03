@@ -208,10 +208,15 @@ tableA:
 select * from "tableA" join "tableB" on "tableA".id = "tableB".customer_id;
 ```
 
+
 3,kaushik,23,Kota,2000,102,2021-03-01,3,3000
+
 3,kaushik,23,Kota,2000,100,2021-03-01,3,1500
+
 2,Khilan,25,Delhi,1500,101,2021-03-04,2,1560
+
 4,Chaitali,25,Mumbai,6500,103,2020-03-01,4,2060
+
 **Left Join(Left Outer Join)，选取左表所有的行，即使条件在右表中不存在：**
 
 ```sql
@@ -223,13 +228,21 @@ on a.id = b.customer_id;
 ```
 
 3,kaushik,3000,2021-03-01
+
 3,kaushik,1500,2021-03-01
+
 2,Khilan,1560,2021-03-04
+
 4,Chaitali,2060,2020-03-01
+
 5,Hardik,<null>,<null>
+ 
 6,Komal,<null>,<null>
+ 
 1,Ramesh,<null>,<null>
+ 
 7,Muffy,<null>,<null>
+ 
 **Right Join(Right Outer Join)，选取右表所有的行，即使条件在左表中没有匹配。**
 
 ```sql
@@ -241,9 +254,13 @@ on a.id = b.customer_id;
 ```
 
 3,kaushik,3000,2021-03-01
+
 3,kaushik,1500,2021-03-01
+
 2,Khilan,1560,2021-03-04
+
 4,Chaitali,2060,2020-03-01
+
 **FULL JOIN(FULL OUTER JOIN)，相当于把left join和right join的结果拼在一起。**
 
 ```sql
@@ -255,13 +272,24 @@ on a.id = b.customer_id;
 ```
 
 3,kaushik,3000,2021-03-01
+
 3,kaushik,1500,2021-03-01
+
 2,Khilan,1560,2021-03-04
+
 4,Chaitali,2060,2020-03-01
+
 5,Hardik,<null>,<null>
+ 
 6,Komal,<null>,<null>
+ 
 1,Ramesh,<null>,<null>
+ 
 7,Muffy,<null>,<null>3,kaushik,3000,2021-03-01
+ 
 3,kaushik,1500,2021-03-01
+
 2,Khilan,1560,2021-03-04
+
 4,Chaitali,2060,2020-03-01
+

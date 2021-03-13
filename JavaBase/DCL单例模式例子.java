@@ -5,7 +5,7 @@ package com.algorithm.zy.msb;
     而没有锁住genInstance方法。    
 * */
 public class SingleTonDoubleCheckLockMode {
-    private static  SingleTonDoubleCheckLockMode INSTANCE;
+    private static  volatile SingleTonDoubleCheckLockMode INSTANCE;
     private SingleTonDoubleCheckLockMode(){}
     public static SingleTonDoubleCheckLockMode getInstance() {
         if (INSTANCE == null) {

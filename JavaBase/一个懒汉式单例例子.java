@@ -13,8 +13,11 @@ public class SingleTonMode1 {
     }
 
     public static void main(String[] args) {
-        SingleTonMode1 sm1 = SingleTonMode1.getInstance();
-        SingleTonMode1 sm2 = SingleTonMode1.getInstance();
-        System.out.println(sm1.equals(sm2));
+        for (int i = 0; i < 100; i++) {
+            new Thread(() -> {
+                SingleTonMode1 t = SingleTonMode1.getInstance();
+                System.out.println(t.hashCode());
+            }).start();
+        }
     }
 }

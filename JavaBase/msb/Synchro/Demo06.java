@@ -1,4 +1,4 @@
-package com.algorithm.zy.msb;
+package msb.Synchro;
 /*synchronized作用于一个类T时，是给这个类T加锁，作用的是这个类T的所有对象*/
 public class Demo06 implements Runnable {
     private static int count;

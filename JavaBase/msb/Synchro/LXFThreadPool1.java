@@ -1,4 +1,4 @@
-package com.algorithm.zy.msb.gaobingfa;
+package msb.Synchro;
 
 /*他的定义：
 线程池内部维护了若干个线程，没有任务的时候，这些线程都处于等待的状态。

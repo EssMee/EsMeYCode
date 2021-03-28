@@ -1,4 +1,4 @@
-package com.algorithm.zy.msb;
+package msb.Synchro;
 
 /*Demo04:修饰一个方法
 synchronized修饰方法与修饰代码块类似，只是作用范围不一样：

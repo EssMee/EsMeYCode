@@ -1,6 +1,7 @@
-package com.algorithm.zy.msb.synchro;
+package msb.Synchro;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collection;

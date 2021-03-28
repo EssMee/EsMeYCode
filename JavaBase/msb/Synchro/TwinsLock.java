@@ -1,6 +1,5 @@
-package com.algorithm.zy.msb.synchro;
+package msb.Synchro;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
@@ -56,7 +55,7 @@ public class TwinsLock implements Lock {
     }
 
     @Override
-    public boolean tryLock(long time, @NotNull TimeUnit unit) throws InterruptedException {
+    public boolean tryLock(long time,  TimeUnit unit) throws InterruptedException {
         return sync.tryAcquireSharedNanos(1, unit.toNanos(time));
     }
 
@@ -65,7 +64,7 @@ public class TwinsLock implements Lock {
         sync.releaseShared(1);
     }
 
-    @NotNull
+
     @Override
     public Condition newCondition() {
         return sync.newCondition();

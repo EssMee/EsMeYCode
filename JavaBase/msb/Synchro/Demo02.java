@@ -1,4 +1,4 @@
-package com.algorithm.zy.msb;
+package msb.Synchro;
 
 /*demo02
 多个线程访问synchronized和非synchronized代码块。

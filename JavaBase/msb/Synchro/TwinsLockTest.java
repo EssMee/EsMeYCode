@@ -1,4 +1,7 @@
-import com.algorithm.zy.msb.synchro.TwinsLock;
+package msb.Synchro;
+
+import msb.Synchro.TwinsLock;
+import org.junit.Test;
 
 import java.util.concurrent.locks.Lock;
 

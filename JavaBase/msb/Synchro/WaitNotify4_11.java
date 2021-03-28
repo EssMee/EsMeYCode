@@ -1,4 +1,4 @@
-package com.algorithm.zy.msb.gaobingfa;
+package msb.Synchro;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

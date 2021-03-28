@@ -28,5 +28,11 @@
             <artifactId>flink-runtime_2.11</artifactId>
             <version>1.11.2</version>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 </project>

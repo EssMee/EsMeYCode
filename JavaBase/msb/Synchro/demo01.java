@@ -1,4 +1,4 @@
-package com.algorithm.zy.msb;
+package msb.Synchro;
 
 /*
 demo01

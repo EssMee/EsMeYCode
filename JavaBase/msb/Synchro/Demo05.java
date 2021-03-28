@@ -1,4 +1,4 @@
-package com.algorithm.zy.msb;
+package msb.Synchro;
 /*Demo05：修饰静态方法
 起作用的范围是整个静态方法，作用的对象是这个类的所有对象；
 我们知道静态方法是属于类的而不是对象的。同样，synchronized修饰的静态方法锁定的是这个类的所有对象。*/

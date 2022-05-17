@@ -56,3 +56,7 @@ where 昨日新注册 or 昨日变更昵称
 - overload 重载：子类继承了父类的同名有参函数，但参数列表不同即为重载。（继承）
 - overwrite 重写：当前类的同名方法，参数列表不同即为重写。（当前类）
 
+### Flink CDC Documents
+
+https://ververica.github.io/flink-cdc-connectors/release-2.2/content/about.html
+

@@ -60,3 +60,6 @@ where 昨日新注册 or 昨日变更昵称
 
 https://ververica.github.io/flink-cdc-connectors/release-2.2/content/about.html
 
+### Flink Batch_Streaming Execution Mode Explain
+
+https://nightlies.apache.org/flink/flink-docs-master/zh/docs/dev/datastream/execution_mode/

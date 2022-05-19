@@ -59,6 +59,7 @@ where 昨日新注册 or 昨日变更昵称
 ### Flink CDC Documents
 
 https://ververica.github.io/flink-cdc-connectors/release-2.2/content/about.html
+https://ucc-private-download.oss-cn-beijing.aliyuncs.com/98313cc2b91c46338e789a898fd37c66.pdf?Expires=1652959769&OSSAccessKeyId=LTAIvsP3ECkg4Nm9&Signature=aAwMO8rod%2FA3iLBxJcrFKSaY0ZU%3D
 
 ### Flink Batch_Streaming Execution Mode Explain
 

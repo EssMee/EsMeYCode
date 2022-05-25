@@ -156,3 +156,7 @@ FROM    (
 ### Flink Batch_Streaming Execution Mode Explain
 
 <https://nightlies.apache.org/flink/flink-docs-master/zh/docs/dev/datastream/execution_mode/>
+
+### 数据分析师都了解的基本统计概念
+
+<https://mp.weixin.qq.com/s?__biz=MjM5MDI1ODUyMA==&mid=2672963006&idx=1&sn=554d0742055e2679673c2a227d2aca32>

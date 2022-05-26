@@ -1,3 +1,5 @@
+package flink_java.flink_table;
+
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,12 +13,11 @@ import org.apache.flink.types.Row;
 import org.apache.flink.table.api.EnvironmentSettings;
 import org.apache.flink.table.api.Table;
 import org.apache.flink.table.api.TableEnvironment;
-import org.apache.flink.table.examples.java.basics.GettingStartedExample.AddressNormalizer;
 import org.apache.flink.table.functions.ScalarFunction;
 import org.apache.flink.util.CloseableIterator;
 
 public class GettingStartedExampleMJ {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         // declare a batch-mode env
         final EnvironmentSettings settings = EnvironmentSettings.newInstance().inBatchMode().build();
         final TableEnvironment env = TableEnvironment.create(settings);
@@ -105,7 +106,7 @@ public class GettingStartedExampleMJ {
                 .select(
                         $("name").upperCase(),
                         $("date_of_birth"),
-                        call(AddressNormalizer.class, $("street"), $("zip_code"), $("city")).as("address", extraNames));
+                        call(AddressNormalizer.class, $("street"), $("zip_code"), $("city")).as("address"));
 
         // use execute() and collect() to retrive the results from the cluster
         // this could be useful for testing before storing it in a external system

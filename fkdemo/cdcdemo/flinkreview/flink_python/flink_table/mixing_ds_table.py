@@ -58,7 +58,6 @@ if __name__ == '__main__':
     logging.basicConfig(
         filename=log_file,
         filemode="w",
-        stream=sys.stdout,
         level=logging.INFO,
         format="%(asctime)s %(filename)s : %(levelname)s %(message)s",
         datefmt="%Y-%m-%d %A %H:%M:%S"

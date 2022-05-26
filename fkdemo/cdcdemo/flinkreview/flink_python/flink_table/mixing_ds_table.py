@@ -7,6 +7,7 @@ from pyflink.datastream import StreamExecutionEnvironment
 from pyflink.table import DataTypes, TableDescriptor, Schema, StreamTableEnvironment
 from pyflink.table.udf import udf
 from pyflink.table import Table
+import os
 
 def mix_ds_tbl():
     env = StreamExecutionEnvironment.get_execution_environment()
@@ -24,10 +25,10 @@ def mix_ds_tbl():
         .build())
 
     # sink
-    t_env.create_temporary_table("print", TableDescriptor.for_connector("print").schema(
+    t_env.create_temporary_table("sink", TableDescriptor.for_connector("print").schema(
         Schema.new_builder().column("a", data_type=DataTypes.BIGINT()).build()).build())
 
-    @udf(result_type=DataTypes.BIGINT())w
+    @udf(result_type=DataTypes.BIGINT())
     def length(data):
         return len(data)
 
@@ -41,7 +42,7 @@ def mix_ds_tbl():
     ds.print("transfered_ds")
 
     # convert datastream to table and preform table api
-    table = t_env.from_data_stream(ds, fields_or_schema=Schema.new_builder().column("f0", DataTypes.BIGINT()).build())
+    table = t_env.from_data_stream(ds,Schema.new_builder().column("f0", DataTypes.BIGINT()).build())
     
     # execute 
     table.execute_insert("sink").wait()
@@ -53,7 +54,10 @@ def mix_ds_tbl():
 '''
 
 if __name__ == '__main__':
+    log_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), "mixing_ds_table_log.log")
     logging.basicConfig(
+        filename=log_file,
+        filemode="w",
         stream=sys.stdout,
         level=logging.INFO,
         format="%(asctime)s %(filename)s : %(levelname)s %(message)s",
